@@ -1,5 +1,5 @@
 package desingPatterns;
 
-public class Main {
+public class Docent {
 
 }
