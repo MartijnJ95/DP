@@ -12,7 +12,9 @@ public class Storage
 	// object factory
 	private GebruikersFactory gebruikersFactory;
 	// Singleton Instance
-	private static Storage instance = null;
+	private static Storage instance = new Storage();
+	// Storage constructor private zodat hij niet geinstantieerd kan worden
+	private Storage(){}
 	
 	// HashMaps
 	private HashMap<String, Lokaal> lokalen = new HashMap<String, Lokaal>();
@@ -48,13 +50,13 @@ public class Storage
 		return gebruikers.get(name);
 	}
 	
-	
+	// Return lokaal op nummer (String)
 	public Lokaal getLokaalByNr(String nr) 
 	{
 		return lokalen.get(nr);
 	}
 	
-	
+	// Vullen van de Storage
 	public void fillStorage() 
 	{
 		// Declare strings
@@ -88,18 +90,15 @@ public class Storage
 		this.Gebruiker = gebr;
 	}
 	
-	
+	// Get de huidige gebruiker
 	public Gebruiker GetHuidigeIngelogd() 
 	{
 		return Gebruiker;
 	}
 	
-	
+	// Singleton instance, get enige beschikbare object
 	public static Storage getInstance() 
 	{
-		if(instance == null) {
-			instance = new Storage();
-		}
 		return instance;
 	}
 }
