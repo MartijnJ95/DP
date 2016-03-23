@@ -1,11 +1,11 @@
 package desingPatterns;
 
-import com.sun.org.apache.xerces.internal.impl.dv.xs.DateTimeDV;
+import java.util.Date;
 
 public class Reservering {
 
-	private DateTimeDV beginTijd;
-	private DateTimeDV eindTijd;
+	private Date beginTijd;
+	private Date eindTijd;
 	private Gebruiker gebruiker;
 	
 	// Constructor
@@ -15,13 +15,13 @@ public class Reservering {
 	}
 	
 	// Get the begin time of the reservation
-	public DateTimeDV GetBeginTijd()
+	public Date GetBeginTijd()
 	{
 		return beginTijd;
 	}
 	
 	// Get the ending time of the reservation
-	public DateTimeDV GetEindTijd()
+	public Date GetEindTijd()
 	{
 		return eindTijd;
 	}
@@ -33,13 +33,13 @@ public class Reservering {
 	}
 	
 	// Set the begin time
-	public void SetBeginTijd(DateTimeDV beginTijd)
+	public void SetBeginTijd(Date beginTijd)
 	{
 		this.beginTijd = beginTijd;
 	}
 	
 	// Set the  ending time
-	public void SetEindTijd(DateTimeDV eindTijd)
+	public void SetEindTijd(Date eindTijd)
 	{
 		this.eindTijd= eindTijd;
 	}
