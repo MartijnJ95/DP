@@ -16,6 +16,7 @@ public class InlogView extends JFrame
 	private static final long serialVersionUID = 1L;
 
 	private JTextField gebruikersNaam = new JTextField(10);
+	private JTextField gebruikersNaamShow = new JTextField(10);
 	private JButton logInButton = new JButton("Log In");
 
 	// Public! Wordt aangeroepen door MAIN
@@ -30,6 +31,7 @@ public class InlogView extends JFrame
 		this.setResizable(false);
 		
 		logInPanel.add(gebruikersNaam);
+		logInPanel.add(gebruikersNaamShow);
 		logInPanel.add(logInButton);
 		
 		this.add(logInPanel);
@@ -40,9 +42,14 @@ public class InlogView extends JFrame
 	{
 		return gebruikersNaam.getText();
 	}
+	
+	public void showUsername(String gebruikersNaam)
+	{
+		gebruikersNaamShow.setText(gebruikersNaam);
+	}
 
 	// Add actionlistener voor de inlog button
-	public void addInlogListener(ActionListener listenForLogInButton)
+	void addInlogListener(ActionListener listenForLogInButton)
 	{
 		logInButton.addActionListener(listenForLogInButton);
 	}

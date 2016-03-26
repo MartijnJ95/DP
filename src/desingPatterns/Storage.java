@@ -2,16 +2,18 @@ package desingPatterns;
 
 import java.util.HashMap;
 
+import javax.swing.JOptionPane;
+
 public class Storage 
 {
 	// object Lokaal
 	private Lokaal Lokaal;
 	// object Gebruiker
-	private Gebruiker Gebruiker;
+	private Gebruiker gebruiker;
 	// object factory
 	private GebruikersFactory gebruikersFactory = new GebruikersFactory();
 	// Singleton Instance
-	private static Storage instance = new Storage();
+	private static Storage instance; // = new Storage();
 	// Storage constructor private zodat hij niet geinstantieerd kan worden
 	private Storage(){}
 	
@@ -22,13 +24,20 @@ public class Storage
 	// Voeg gebruiker toe op naam en object
 	public void addGebruiker(String gebruikerNaam, Gebruiker gebr)
 	{
-		gebruikers.put(gebruikerNaam, gebr);
+		if(gebruikers.containsKey(gebruikerNaam) != true)
+		{
+			// DO NOTHING
+			gebruikers.put(gebruikerNaam, gebr);
+		}
 	}
 	
 	// Voeg lokaal toe op lokaalnummer en object
 	public void addLokaal(String lokaalNummer, Lokaal lok)
 	{
-		lokalen.put(lokaalNummer, lok);
+		if(lokalen.containsKey(lokaalNummer) != true)
+		{
+			lokalen.put(lokaalNummer, lok);
+		}
 	}
 	
 	// Returned de gebruikers list
@@ -80,18 +89,22 @@ public class Storage
 	// Set de huigige ingelogd
 	public void setHuidigeIngelogd(Gebruiker gebr) 
 	{
-		this.Gebruiker = gebr;
+		this.gebruiker = gebr;
 	}
 	
 	// Get de huidige gebruiker
 	public Gebruiker GetHuidigeIngelogd() 
 	{
-		return Gebruiker;
+		return gebruiker;
 	}
 	
 	// Singleton instance, get enige beschikbare object
 	public static Storage getInstance() 
 	{
+		if(instance == null)
+		{
+			instance = new Storage();
+		}
 		return instance;
 	}
 }
