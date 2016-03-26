@@ -2,7 +2,6 @@ package desingPatterns;
 
 import java.util.HashMap;
 
-import javax.swing.JOptionPane;
 
 public class Storage 
 {
