@@ -2,8 +2,7 @@ package desingPatterns;
 
 public class LokaalReserveringsSysteem 
 {
-	
-	// Main Class
+	// Main
 	public static void main(String[] args)
 	{
 	// Get enige beschikbare object
@@ -14,6 +13,9 @@ public class LokaalReserveringsSysteem
 	
 	// Instantieer de view
 	InlogView inlogView = new InlogView();
+	
+	// Instantieer de Controller
+	InlogController inlogController = new InlogController(inlogView, storage);
 	
 	// Call de inlog view
 	inlogView.setVisible(true);
