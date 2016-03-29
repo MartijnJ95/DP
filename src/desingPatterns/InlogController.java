@@ -52,6 +52,10 @@ public class InlogController
 				
 				inlogView.showUsername(gebrNaam);
 				
+				//----- TEST CODE -----
+				// Switch view naar overzicht
+				
+				
 				System.out.println("Huidige geruiker is " + gebrNaam);
 				System.out.println("Alle gebruikers: " + storage.getAllGebruikers());
 			}
