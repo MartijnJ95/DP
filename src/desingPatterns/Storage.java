@@ -23,7 +23,7 @@ public class Storage
 	// Voeg gebruiker toe op naam en object
 	public void addGebruiker(String gebruikerNaam, Gebruiker gebr)
 	{
-		if(gebruikers.containsKey(gebruikerNaam) != true)
+		if(gebruikers.containsKey(gebruikerNaam) == false)
 		{
 			// Maak nieuwe gebruiker aan.
 			gebruikers.put(gebruikerNaam, gebr);
@@ -84,7 +84,7 @@ public class Storage
 		gebruikers.put("Wilco", wilco);
 		gebruikers.put("Xing", xing);
 		
-		// Vul de gebruikers
+		// Vul de lokalen
 		for(int i = 1000; i< 1023; i++)
 		{
 			Lokaal lokaal = new Lokaal();
