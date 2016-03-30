@@ -25,7 +25,7 @@ public class Storage
 	{
 		if(gebruikers.containsKey(gebruikerNaam) != true)
 		{
-			// DO NOTHING
+			// Maak nieuwe gebruiker aan.
 			gebruikers.put(gebruikerNaam, gebr);
 		}
 	}

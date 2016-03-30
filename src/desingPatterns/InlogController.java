@@ -16,11 +16,9 @@ public class InlogController
 	{
 		this.inlogView = inlogView;
 		this.storageModel = storageModel;
-		
 		this.inlogView.addInlogListener(new LogInListener());
 	}
 	
-	//Storage storage = Storage.getInstance();
 	// Method voor het inloggen
 	// LogIn maakt een geheel nieuwe gebruiker aan
 	public void LogIn(String gebrNaam)
@@ -50,7 +48,7 @@ public class InlogController
 				storage.addGebruiker(gebrNaam, gebruiker);
 				storage.setHuidigeIngelogd(gebruiker);
 				
-				inlogView.showUsername(gebrNaam);
+				//inlogView.showUsername(gebrNaam);
 				
 				//----- TEST CODE -----
 				// Switch view naar overzicht
