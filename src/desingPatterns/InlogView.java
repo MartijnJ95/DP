@@ -18,7 +18,7 @@ public class InlogView extends JFrame
 	private JTextField gebruikersNaam = new JTextField(10);
 	private JTextField gebruikersNaamShow = new JTextField(10);
 	private JButton logInButton = new JButton("Log In");
-
+	
 	// Public! Wordt aangeroepen door MAIN
 	InlogView()
 	{

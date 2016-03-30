@@ -52,9 +52,12 @@ public class InlogController
 				
 				inlogView.showUsername(gebrNaam);
 				
-				//----- TEST CODE -----
-				// Switch view naar overzicht
+				// Switch naar het lokaaloverzicht view
+				inlogView.setVisible(false);
 				
+				LokaalOverzichtView lokaalOverzichtView = new LokaalOverzichtView();
+				lokaalOverzichtView.setVisible(true);
+				LokaalOverzichtController lokOverzichtController = new LokaalOverzichtController(lokaalOverzichtView, storage);
 				
 				System.out.println("Huidige geruiker is " + gebrNaam);
 				System.out.println("Alle gebruikers: " + storage.getAllGebruikers());
