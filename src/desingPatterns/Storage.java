@@ -23,9 +23,9 @@ public class Storage
 	// Voeg gebruiker toe op naam en object
 	public void addGebruiker(String gebruikerNaam, Gebruiker gebr)
 	{
-		if(gebruikers.containsKey(gebruikerNaam) != true)
+		if(gebruikers.containsKey(gebruikerNaam) == false)
 		{
-			// DO NOTHING
+			// Maak nieuwe gebruiker aan.
 			gebruikers.put(gebruikerNaam, gebr);
 		}
 	}
@@ -33,7 +33,7 @@ public class Storage
 	// Voeg lokaal toe op lokaalnummer en object
 	public void addLokaal(String lokaalNummer, Lokaal lok)
 	{
-		if(lokalen.containsKey(lokaalNummer) != true)
+		if(lokalen.containsKey(lokaalNummer) == false)
 		{
 			lokalen.put(lokaalNummer, lok);
 		}
@@ -83,6 +83,14 @@ public class Storage
 		gebruikers.put("Martijn", martijn);
 		gebruikers.put("Wilco", wilco);
 		gebruikers.put("Xing", xing);
+		
+		// Vul de lokalen
+		for(int i = 1000; i< 1023; i++)
+		{
+			Lokaal lokaal = new Lokaal();
+			lokaal.SetLokaalNummer(Integer.toString(i));
+			addLokaal(Integer.toString(i), lokaal);
+		}
 	}
 	
 	// Set de huigige ingelogd

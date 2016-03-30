@@ -1,5 +1,6 @@
 package desingPatterns;
 
-public class EigenReserveringController {
+public class EigenReserveringController 
+{
 
 }

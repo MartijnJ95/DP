@@ -2,6 +2,8 @@ package desingPatterns;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.HashMap;
 
 public class LokaalOverzichtController {
@@ -15,23 +17,58 @@ public class LokaalOverzichtController {
 		this.lokOverzicht = lokOverzicht;
 		this.storageModel = storageModel;
 		
-		// On start fill the table with lokalen
-		getAllLokalen();
-		
-		// Room for listeners
-		// this.lokOvezicht.addListenernaamhier(new addListenernaamhier());
+		this.lokOverzicht.addLogoutListener(new LogOutListener());
+		this.lokOverzicht.mouseListener(new MouseClickListener());
 	}
-	
-	// Get all lokalen en vul de tabel
-	private void getAllLokalen()
+
+	// Test code voor mouse click listener
+	class MouseClickListener implements MouseListener
 	{
-		// Get storage and all the lokalen in the storage
-		Storage storage = Storage.getInstance();
-		HashMap<String, Lokaal> lok = storage.getAllLokalen();
+		@Override
+		public void mousePressed(MouseEvent evt){
 			
-		// Send the hashmap to the view and fill the table
-		lokOverzicht.fillTable(lok);
+			Storage storage = Storage.getInstance();
+			Lokaal lokaal = storage.getLokaalByNr(lokOverzicht.getClicked(evt.getPoint()));
+			//geef lokaal mee aan de detailview.
+		}
+
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
 	}
 	
-	
+	// When the logout button is pressed, logout
+	class LogOutListener implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			Storage storage = Storage.getInstance();
+			storage.setHuidigeIngelogd(null);
+			lokOverzicht.setVisible(false);
+			
+			InlogView inlogView = new InlogView();
+			inlogView.setVisible(true);
+			InlogController controller = new InlogController(inlogView, storage);
+		}
+	}
 }
