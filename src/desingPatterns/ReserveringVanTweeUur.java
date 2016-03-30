@@ -5,7 +5,9 @@ import java.util.Date;
 
 public class ReserveringVanTweeUur implements ReserveringsStrategy {
 	
-	public ReserveringVanTweeUur() {
+	public ReserveringVanTweeUur()
+	{
+		
 	}
 	
 	@Override

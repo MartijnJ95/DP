@@ -29,6 +29,10 @@ public class LokaalOverzichtController {
 			
 			Storage storage = Storage.getInstance();
 			Lokaal lokaal = storage.getLokaalByNr(lokOverzicht.getClicked(evt.getPoint()));
+			
+			LokaalDetailView lokaalDetailView = new LokaalDetailView();
+			lokaalDetailView.setVisible(true);
+			LokaalDetailController lokOverzichtController = new LokaalDetailController(lokaalDetailView, storage);
 			//geef lokaal mee aan de detailview.
 		}
 
