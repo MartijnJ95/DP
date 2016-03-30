@@ -1,11 +1,9 @@
 package desingPatterns;
 
-import java.awt.BorderLayout;
+
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -18,7 +16,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
-import desingPatterns.LokaalOverzichtController.MouseClickListener;
 
 public class LokaalOverzichtView extends JFrame {
 
@@ -40,8 +37,8 @@ public class LokaalOverzichtView extends JFrame {
 		lokOverzichtPanel = new JPanel();
 		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setSize(100,400);
-		this.setResizable(true);
+		this.setSize(400,400);
+		this.setResizable(false);
 		
 		// Get the instance of storage and fill the table with the lokalen
 		Storage storage = Storage.getInstance();
@@ -65,11 +62,11 @@ public class LokaalOverzichtView extends JFrame {
 		// Create a new table
 		CustomTableModel tableModel = new CustomTableModel(lokaalList);
 		overzichtTabel = new JTable(tableModel);
-		overzichtTabel.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		//overzichtTabel.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		
 		// Create the scrollpane and set the dimensions
-		scrollPane = new JScrollPane(overzichtTabel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setPreferredSize(new Dimension(50,300));
+		scrollPane = new JScrollPane(overzichtTabel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scrollPane.setPreferredSize(new Dimension(300,300));
 		
 		// Add scrollpane to the panel
 		lokOverzichtPanel.add(scrollPane);
@@ -101,7 +98,7 @@ public class LokaalOverzichtView extends JFrame {
 class CustomTableModel extends AbstractTableModel{
 	
 	private ArrayList<String> al = new ArrayList<String>();
-	String[] header;
+	private String[] header = {"Lokaal nummer", "Reserveringen"};
 	
 	public CustomTableModel(ArrayList<String> lokList)
 	{
@@ -115,14 +112,39 @@ class CustomTableModel extends AbstractTableModel{
 	}
 	
 	@Override
-	public String getValueAt(int row, int col)
+	public Object getValueAt(int row, int col)
 	{
-		return al.get(row);
+		Storage storage = Storage.getInstance();
+		Lokaal lok = storage.getLokaalByNr(al.get(row)); 
+		
+		switch(col)
+		{
+		case 0:
+			return lok.GetLokaalNummer();
+		case 1:
+			ArrayList<Reservering> resList = lok.GetReseringen();
+			String output = "";
+			if(resList.size() != 0)
+			{
+				for(int i = 0; i < resList.size(); i++)
+				{
+					Reservering res = resList.get(i);
+					output += (res.GetBeginTijd() + " - " + res.GetEindTijd() + " ; "); 
+				}
+			}
+			else
+			{
+				output += "Geen Reserveringen";
+			}
+			return output;
+		default:
+			return "unknown";
+		}
 	}
 	
-	public String getColmnName(int index)
+	public String getColmnName(int col)
 	{
-		return header[index];
+		return header[col];
 	}
 	
 	@Override
@@ -133,7 +155,7 @@ class CustomTableModel extends AbstractTableModel{
 
 	@Override
 	public int getColumnCount() {
-		return 1;
+		return header.length;
 	}
 }
 

@@ -9,13 +9,11 @@ import java.util.HashMap;
 public class LokaalOverzichtController {
 
 	private LokaalOverzichtView lokOverzicht;
-	private Storage storageModel;
 	
 	// Constructor
-	public LokaalOverzichtController(LokaalOverzichtView lokOverzicht, Storage storageModel)
+	public LokaalOverzichtController(LokaalOverzichtView lokOverzicht)
 	{
 		this.lokOverzicht = lokOverzicht;
-		this.storageModel = storageModel;
 		
 		this.lokOverzicht.addLogoutListener(new LogOutListener());
 		this.lokOverzicht.mouseListener(new MouseClickListener());
@@ -29,7 +27,7 @@ public class LokaalOverzichtController {
 			
 			Storage storage = Storage.getInstance();
 			Lokaal lokaal = storage.getLokaalByNr(lokOverzicht.getClicked(evt.getPoint()));
-			//geef lokaal mee aan de detailview.
+			//geef lokaal mee aan de detailview
 		}
 
 		@Override
@@ -68,7 +66,7 @@ public class LokaalOverzichtController {
 			
 			InlogView inlogView = new InlogView();
 			inlogView.setVisible(true);
-			InlogController controller = new InlogController(inlogView, storage);
+			InlogController controller = new InlogController(inlogView);
 		}
 	}
 }
