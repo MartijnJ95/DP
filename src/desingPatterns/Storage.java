@@ -71,7 +71,7 @@ public class Storage
 		Gebruiker martijn = gebruikersFactory.getGebruiker("STUDENT");
 		Gebruiker wilco = gebruikersFactory.getGebruiker("DOCENT");
 		Gebruiker xing = gebruikersFactory.getGebruiker("ADMINISTRATOR");
-
+		
 		// TODO setten voor later indien nodig
 		kevin.SetNaam("Kevin");
 		martijn.SetNaam("Martijn");

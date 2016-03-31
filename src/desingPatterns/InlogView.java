@@ -12,7 +12,7 @@ import javax.swing.event.DocumentListener;
 public class InlogView extends JFrame
 {
 	/**
-	 * Nodig bij extends JFrame
+	 * Standard serial, not used but avoids warnings.
 	 */
 	private static final long serialVersionUID = 1L;
 	
