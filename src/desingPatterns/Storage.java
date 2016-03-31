@@ -23,9 +23,9 @@ public class Storage
 	// Voeg gebruiker toe op naam en object
 	public void addGebruiker(String gebruikerNaam, Gebruiker gebr)
 	{
-		if(gebruikers.containsKey(gebruikerNaam) != true)
+		if(gebruikers.containsKey(gebruikerNaam) == false)
 		{
-			// DO NOTHING
+			// Maak nieuwe gebruiker aan.
 			gebruikers.put(gebruikerNaam, gebr);
 		}
 	}
@@ -71,7 +71,7 @@ public class Storage
 		Gebruiker martijn = gebruikersFactory.getGebruiker("STUDENT");
 		Gebruiker wilco = gebruikersFactory.getGebruiker("DOCENT");
 		Gebruiker xing = gebruikersFactory.getGebruiker("ADMINISTRATOR");
-
+		
 		// TODO setten voor later indien nodig
 		kevin.SetNaam("Kevin");
 		martijn.SetNaam("Martijn");
@@ -84,7 +84,7 @@ public class Storage
 		gebruikers.put("Wilco", wilco);
 		gebruikers.put("Xing", xing);
 		
-		// Vul de gebruikers
+		// Vul de lokalen
 		for(int i = 1000; i< 1023; i++)
 		{
 			Lokaal lokaal = new Lokaal();

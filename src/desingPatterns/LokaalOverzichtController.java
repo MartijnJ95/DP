@@ -27,7 +27,15 @@ public class LokaalOverzichtController {
 			
 			Storage storage = Storage.getInstance();
 			Lokaal lokaal = storage.getLokaalByNr(lokOverzicht.getClicked(evt.getPoint()));
+<<<<<<< HEAD
+			
+			LokaalDetailView lokaalDetailView = new LokaalDetailView();
+			lokaalDetailView.setVisible(true);
+			LokaalDetailController lokOverzichtController = new LokaalDetailController(lokaalDetailView, storage);
+			//geef lokaal mee aan de detailview.
+=======
 			//geef lokaal mee aan de detailview
+>>>>>>> refs/remotes/origin/Martijn
 		}
 
 		@Override
