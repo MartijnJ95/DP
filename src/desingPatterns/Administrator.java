@@ -5,15 +5,14 @@ import java.util.ArrayList;
 public class Administrator implements Gebruiker{
 
 	private String naam;
-	private int maximaleReserveringstijdInMinuten;
 	private int maximaalAantalReserveringen;
 	private ArrayList<Reservering> huidigeReserveringen;
-	private int huidigeReserveringsTijd;
 	
 	// Constructor
 	public Administrator() 
 	{
 		huidigeReserveringen = new ArrayList<Reservering>();
+		maximaalAantalReserveringen = 9999;
 	}
 
 	// Get naam
@@ -49,24 +48,6 @@ public class Administrator implements Gebruiker{
 	public void RemoveHuidigeReservering(Reservering res)
 	{
 		huidigeReserveringen.remove(res);
-	}
-	
-	@Override
-	public int GetHuidigeReserveringsTijdInMin()
-	{
-		return huidigeReserveringsTijd;
-	}
-	
-	@Override
-	public void SetHuidigeReserveringsTijdInMin(int resTijd)
-	{
-		huidigeReserveringsTijd = resTijd;
-	}
-	
-	@Override
-	public int GetMaximaleReserveringsTijdInMin()
-	{
-		return maximaleReserveringstijdInMinuten;
 	}
 	
 	@Override

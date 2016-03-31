@@ -1,5 +1,6 @@
 package desingPatterns;
 
+import java.util.Date;
 import java.util.HashMap;
 
 
@@ -11,6 +12,7 @@ public class Storage
 	private Gebruiker gebruiker;
 	// object factory
 	private GebruikersFactory gebruikersFactory = new GebruikersFactory();
+	
 	// Singleton Instance
 	private static Storage instance; // = new Storage();
 	// Storage constructor private zodat hij niet geinstantieerd kan worden
@@ -113,5 +115,11 @@ public class Storage
 			instance = new Storage();
 		}
 		return instance;
+	}
+	
+	// Maak nieuwe reservering aan
+	public Reservering MaakReservering(ReserveringsStrategy strategy, Date beginTijd)
+	{
+		return strategy.MaakReservering(beginTijd);
 	}
 }

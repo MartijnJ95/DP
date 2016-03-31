@@ -7,10 +7,9 @@ public class InlogController
 {
 	private InlogView inlogView;
 	private String gebrNaam;
-	
-	// object factory
 	private GebruikersFactory gebruikersFactory = new GebruikersFactory();
 	
+	// Constructor
 	public InlogController(InlogView inlogView)
 	{
 		this.inlogView = inlogView;
@@ -22,40 +21,31 @@ public class InlogController
 	{
 		this.gebrNaam = gebrNaam;
 	}
-	
-	// CheckLogIn
-	public void checkLogIn(String gebrNaam)
-	{
 		
-	}
-	
-	// Method achter de Button op inlogView
+	// Method achter de login button op inlogView
 	class LogInListener implements ActionListener
 	{
 		
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
 			Storage storage = Storage.getInstance();
 			try
 			{
+				// Haal de gebruikersnaam op en maak een nieuwe gebruiker aan
 				gebrNaam = inlogView.getUsername();
 				Gebruiker gebruiker = gebruikersFactory.getGebruiker("STUDENT");
 				
+				// Voeg deze toe aan de storage
 				storage.addGebruiker(gebrNaam, gebruiker);
 				storage.setHuidigeIngelogd(gebruiker);
-				
-				//inlogView.showUsername(gebrNaam);
 				
 				// Switch naar het lokaaloverzicht view
 				inlogView.setVisible(false);
 				
+				// 
 				LokaalOverzichtView lokaalOverzichtView = new LokaalOverzichtView();
 				lokaalOverzichtView.setVisible(true);
 				LokaalOverzichtController lokOverzichtController = new LokaalOverzichtController(lokaalOverzichtView);
-				
-				System.out.println("Huidige geruiker is " + gebrNaam);
-				System.out.println("Alle gebruikers: " + storage.getAllGebruikers());
 			}
 			catch(Exception ex)
 			{

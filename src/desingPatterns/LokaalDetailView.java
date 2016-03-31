@@ -37,7 +37,7 @@ public class LokaalDetailView extends JFrame
 	private JRadioButton drieUur = new JRadioButton("15:00", false);
 	private JRadioButton kwartVoorVier = new JRadioButton("15:45", false);
 	private JRadioButton halfVijf = new JRadioButton("16:30", false);
-	
+
 	private JRadioButton reserveringEenUur = new JRadioButton("1 Uur", true);
 	private JRadioButton reserveringTweeUur = new JRadioButton("2 Uur", false);
 	private JRadioButton reserveringDrieUur = new JRadioButton("3 Uur", false);
@@ -45,11 +45,18 @@ public class LokaalDetailView extends JFrame
 	private String reservering;
 	private Date reserveringParsed;
 	
-	LokaalDetailView()
+	private Boolean isEenUur = false;
+	private Boolean isTweeUur = false;
+	private Boolean isDrieUur = false;
+	
+	private Lokaal huidigLokaal;
+	
+	LokaalDetailView(Lokaal lokaal)
 	{
 		super("Maak een Reservering");
 		
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		huidigLokaal = lokaal;
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setSize(550, 350);
 		this.setResizable(false);
 		
@@ -61,8 +68,6 @@ public class LokaalDetailView extends JFrame
 		
 		tijdGroep = new ButtonGroup();
 		
-		//this.add(reserveringPanel);
-		//this.add(reserveringsTijdPanel);
 		this.add(mainPanel);
 		
 		mainPanel.add(reserveringsTijdPanel);
@@ -102,6 +107,11 @@ public class LokaalDetailView extends JFrame
 		tijdsDuurGroep.add(reserveringEenUur);
 		tijdsDuurGroep.add(reserveringTweeUur);
 		tijdsDuurGroep.add(reserveringDrieUur);
+	}
+	
+	public Lokaal getHuidigLokaal()
+	{
+		return huidigLokaal;
 	}
 	
 	// Get de reservering die gemaakt is
@@ -152,47 +162,47 @@ public class LokaalDetailView extends JFrame
 			reservering = "16:30";
 		}
 		
+		Calendar myDate = new GregorianCalendar();
+		Calendar now = Calendar.getInstance();
+		String target = reservering;
+		Date theDate = new SimpleDateFormat("HH:mm", Locale.ENGLISH).parse(target);
+		myDate.setTime(theDate);
+		
+		myDate.set(Calendar.DAY_OF_MONTH, now.get(Calendar.DAY_OF_MONTH));
+		myDate.set(Calendar.MONTH, now.get(Calendar.MONTH));
+		myDate.set(Calendar.YEAR, now.get(Calendar.YEAR));
+		Date reserveDate = myDate.getTime();
+		
+		reserveringParsed = reserveDate;
+		
 		if(reserveringEenUur.isSelected())
 		{
-			//DateFormat df = new SimpleDateFormat("MM/dd/yyy HH:mm:ss");
-			//String timeString = df.format(new Date()).substring(10);
-			
-			//String target = reservering;
-			//DateFormat df2 = new SimpleDateFormat("HH:mm:ss");
-			//Date reserveringParsedPre = df2.parse(target);
-			
-			//String startDateString = df2.format(reserveringParsedPre);
-			
-			//startDateString = timeString+" "+startDateString;
-			
-			//reserveringParsed = df.parse(startDateString);
-			Calendar myDate = new GregorianCalendar();
-			Calendar now = Calendar.getInstance();
-			String target = reservering;
-			Date theDate = new SimpleDateFormat("HH:mm", Locale.ENGLISH).parse(target);
-			myDate.setTime(theDate);
-			
-			myDate.set(Calendar.SECOND, now.get(Calendar.SECOND));
-			myDate.set(Calendar.DAY_OF_MONTH, now.get(Calendar.DAY_OF_MONTH));
-			myDate.set(Calendar.MONTH, now.get(Calendar.MONTH));
-			myDate.set(Calendar.YEAR, now.get(Calendar.YEAR));
-			Date reserveDate = myDate.getTime();
-			
-			reserveringParsed = reserveDate;
+			isEenUur = true;
 		}
-		/*if(reserveringTweeUur.isSelected())
+		else if(reserveringTweeUur.isSelected())
 		{
-			String target = reservering;
-			DateFormat df = new SimpleDateFormat("kk:mm", Locale.ENGLISH);
-			reserveringParsed = df.parse(target);
+			isTweeUur = true;
 		}
 		if(reserveringDrieUur.isSelected())
 		{
-			String target = reservering;
-			DateFormat df = new SimpleDateFormat("kk:mm", Locale.ENGLISH);
-			reserveringParsed = df.parse(target);
-		}*/
+			isDrieUur = true;
+		}
 		return reserveringParsed;
+	}
+	
+	public Boolean isEenUur()
+	{
+		return isEenUur;
+	}
+	
+	public Boolean isTweeUur()
+	{
+		return isTweeUur;
+	}
+	
+	public Boolean isDrieUur()
+	{
+		return isDrieUur;
 	}
 	
 	public void addReserveerListener(ActionListener listenForReserveerButton)

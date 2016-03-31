@@ -2,6 +2,7 @@ package desingPatterns;
 
 public class GebruikersFactory {
 
+	// Haal een gebruiker op aan de hand van het gebruikerstype
 	public Gebruiker getGebruiker(String gebruikersType)
 	{
 		if(gebruikersType == null)

@@ -26,13 +26,17 @@ public class LokaalOverzichtController {
 		public void mousePressed(MouseEvent evt){
 			Storage storage = Storage.getInstance();
 			Lokaal lokaal = storage.getLokaalByNr(lokOverzicht.getClicked(evt.getPoint()));
-			LokaalDetailView lokaalDetailView = new LokaalDetailView();
-			lokaalDetailView.setVisible(true);
-			LokaalDetailController lokOverzichtController = new LokaalDetailController(lokaalDetailView);
-			//geef lokaal mee aan de detailview.
+			if(lokaal != null)
+			{
+				LokaalDetailView lokaalDetailView = new LokaalDetailView(lokaal);
+				lokaalDetailView.setVisible(true);
+				LokaalDetailController lokOverzichtController = new LokaalDetailController(lokaalDetailView);
+			}
+			else
+			{
+				lokOverzicht.displayErrorMsg("Selecteer een lokaal");
+			}
 		}
-
-		
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
