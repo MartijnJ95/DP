@@ -10,7 +10,7 @@ public class Lokaal {
 	// Constructor
 	public Lokaal()
 	{
-		
+		reserveringen = new ArrayList<Reservering>();
 	}
 	
 	// Get lokaalNummer

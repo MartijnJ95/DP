@@ -6,16 +6,19 @@ import java.awt.event.ActionListener;
 public class InlogController
 {
 	private InlogView inlogView;
-	private Storage storageModel;
 	private String gebrNaam;
 	
 	// object factory
 	private GebruikersFactory gebruikersFactory = new GebruikersFactory();
 	
-	public InlogController(InlogView inlogView, Storage storageModel)
+	public InlogController(InlogView inlogView)
 	{
 		this.inlogView = inlogView;
+<<<<<<< HEAD
 		this.storageModel = storageModel;
+=======
+		
+>>>>>>> refs/remotes/origin/Martijn
 		this.inlogView.addInlogListener(new LogInListener());
 	}
 	
@@ -55,7 +58,7 @@ public class InlogController
 				
 				LokaalOverzichtView lokaalOverzichtView = new LokaalOverzichtView();
 				lokaalOverzichtView.setVisible(true);
-				LokaalOverzichtController lokOverzichtController = new LokaalOverzichtController(lokaalOverzichtView, storage);
+				LokaalOverzichtController lokOverzichtController = new LokaalOverzichtController(lokaalOverzichtView);
 				
 				System.out.println("Huidige geruiker is " + gebrNaam);
 				System.out.println("Alle gebruikers: " + storage.getAllGebruikers());
