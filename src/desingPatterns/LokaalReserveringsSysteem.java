@@ -15,7 +15,7 @@ public class LokaalReserveringsSysteem
 	InlogView inlogView = new InlogView();
 	
 	// Instantieer de Controller
-	InlogController inlogController = new InlogController(inlogView, storage);
+	InlogController inlogController = new InlogController(inlogView);
 	
 	// Call de inlog view
 	inlogView.setVisible(true);
