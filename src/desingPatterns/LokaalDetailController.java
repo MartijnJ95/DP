@@ -6,14 +6,13 @@ import java.awt.event.ActionListener;
 public class LokaalDetailController 
 {
 	private LokaalDetailView lokDetView;
-	private Storage storageModel;
+
 	private Gebruiker huidigeIngelogd;
 	
-	public LokaalDetailController(LokaalDetailView lokDetView, Storage storageModel)
+	public LokaalDetailController(LokaalDetailView lokDetView)
 	{
 		//Storage storage = Storage.getInstance();
 		this.lokDetView = lokDetView;
-		this.storageModel = storageModel;
 		
 		this.lokDetView.addReserveerListener(new ReserveerListener());
 	}

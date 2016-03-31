@@ -14,15 +14,9 @@ public class InlogController
 	public InlogController(InlogView inlogView)
 	{
 		this.inlogView = inlogView;
-<<<<<<< HEAD
-		this.storageModel = storageModel;
-=======
-		
->>>>>>> refs/remotes/origin/Martijn
 		this.inlogView.addInlogListener(new LogInListener());
 	}
 	
-	// Method voor het inloggen
 	// LogIn maakt een geheel nieuwe gebruiker aan
 	public void LogIn(String gebrNaam)
 	{
