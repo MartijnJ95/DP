@@ -37,7 +37,7 @@ public class Lokaal {
 		reserveringen.add(res);
 	}
 	
-	// TODO Check of dit werkt zoals gedacht! 
+	// Remove reservering from this lokaal
 	public void RemoveReservering(Reservering res)
 	{
 		reserveringen.remove(res);

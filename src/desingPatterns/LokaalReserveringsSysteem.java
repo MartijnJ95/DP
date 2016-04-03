@@ -5,19 +5,19 @@ public class LokaalReserveringsSysteem
 	// Main
 	public static void main(String[] args)
 	{
-	// Get enige beschikbare object
+	// Get storage instance
 	Storage storage = Storage.getInstance();
 	
 	// Fill Storage
 	storage.fillStorage();
 	
-	// Instantieer de view
+	// Instantiate the view
 	InlogView inlogView = new InlogView();
 	
-	// Instantieer de Controller
+	// Instantiate the controller
 	InlogController inlogController = new InlogController(inlogView);
 	
-	// Call de inlog view
+	// Call the inlog view
 	inlogView.setVisible(true);
 	}
 }

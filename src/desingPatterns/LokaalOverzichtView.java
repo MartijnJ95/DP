@@ -1,16 +1,20 @@
 package desingPatterns;
 
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -30,15 +34,15 @@ public class LokaalOverzichtView extends JFrame {
 	
 	LokaalOverzichtView()
 	{
-		// Geef beschrijving mee
+		// Add description
 		super("Lokalen overzicht");
 	
-		// Creer nieuwe JFrame en zet de size en onclose
+		// Create new Jframe and set size and onclose method
 		lokOverzichtPanel = new JPanel();
 		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setSize(400,400);
-		this.setResizable(false);
+		this.setResizable(true);
 		
 		// Get the instance of storage and fill the table with the lokalen
 		Storage storage = Storage.getInstance();
@@ -62,23 +66,23 @@ public class LokaalOverzichtView extends JFrame {
 		// Create a new table
 		CustomTableModel tableModel = new CustomTableModel(lokaalList);
 		overzichtTabel = new JTable(tableModel);
-		//overzichtTabel.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+		overzichtTabel.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
 		
 		// Create the scrollpane and set the dimensions
-		scrollPane = new JScrollPane(overzichtTabel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scrollPane = new JScrollPane(overzichtTabel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scrollPane.setPreferredSize(new Dimension(300,300));
 		
 		// Add scrollpane to the panel
-		lokOverzichtPanel.add(scrollPane);
+		lokOverzichtPanel.add(scrollPane, BorderLayout.LINE_START);
 	}
 	
-	// Mouselistener voor tableclick
+	// Mouselistener for tableclick
 	void mouseListener(MouseListener list)
 	{
 		overzichtTabel.addMouseListener(list);
 	}
 	
-	// Actionlistener voor loguit button
+	// Actionlistener for loguit button
 	void addLogoutListener(ActionListener listenForLogOutButton)
 	{
 		uitlogKnop.addActionListener(listenForLogOutButton);
@@ -92,7 +96,14 @@ public class LokaalOverzichtView extends JFrame {
 		String returnString = (String)overzichtTabel.getValueAt(r, c);
 		return returnString;
 	}
+	
+	// Show error
+	public void displayErrorMsg(String msg)
+	{
+		JOptionPane.showMessageDialog(this, msg);
+	}
 }
+
 
 // Custom table model to use the arraylist
 class CustomTableModel extends AbstractTableModel{
@@ -100,6 +111,7 @@ class CustomTableModel extends AbstractTableModel{
 	private ArrayList<String> al = new ArrayList<String>();
 	private String[] header = {"Lokaal nummer", "Reserveringen"};
 	
+	// Constructor
 	public CustomTableModel(ArrayList<String> lokList)
 	{
 		al = lokList;
@@ -122,6 +134,7 @@ class CustomTableModel extends AbstractTableModel{
 		case 0:
 			return lok.GetLokaalNummer();
 		case 1:
+			// Show all the reservations made for all the lokalen
 			ArrayList<Reservering> resList = lok.GetReseringen();
 			String output = "";
 			if(resList.size() != 0)
@@ -129,7 +142,10 @@ class CustomTableModel extends AbstractTableModel{
 				for(int i = 0; i < resList.size(); i++)
 				{
 					Reservering res = resList.get(i);
-					output += (res.GetBeginTijd() + " - " + res.GetEindTijd() + " ; "); 
+					SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss dd:MM");
+					String begin = format.format(res.GetBeginTijd());
+					String eind = format.format(res.GetEindTijd());
+					output += (begin + " - " + eind + " ; "); 
 				}
 			}
 			else
