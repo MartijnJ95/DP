@@ -4,15 +4,14 @@ import java.util.ArrayList;
 
 public class Docent implements Gebruiker{
 	private String naam;
-	private int maximaleReserveringstijdInMinuten;
 	private int maximaalAantalReserveringen;
 	private ArrayList<Reservering> huidigeReserveringen;
-	private int huidigeReserveringsTijd;
 	
 	// Constructor
 	public Docent()
 	{
 		huidigeReserveringen = new ArrayList<Reservering>();
+		maximaalAantalReserveringen = 15;
 	}
 	
 	// Get naam
@@ -48,24 +47,6 @@ public class Docent implements Gebruiker{
 	public void RemoveHuidigeReservering(Reservering res)
 	{
 		huidigeReserveringen.remove(res);
-	}
-	
-	@Override
-	public int GetHuidigeReserveringsTijdInMin()
-	{
-		return huidigeReserveringsTijd;
-	}
-	
-	@Override
-	public void SetHuidigeReserveringsTijdInMin(int resTijd)
-	{
-		huidigeReserveringsTijd = resTijd;
-	}
-	
-	@Override
-	public int GetMaximaleReserveringsTijdInMin()
-	{
-		return maximaleReserveringstijdInMinuten;
 	}
 	
 	@Override

@@ -9,8 +9,5 @@ public interface Gebruiker {
 	ArrayList<Reservering> GetHuidigeReservingen();
 	void AddHuidigeReservering(Reservering res);
 	void RemoveHuidigeReservering(Reservering res);
-	int GetHuidigeReserveringsTijdInMin();
-	void SetHuidigeReserveringsTijdInMin(int resTijd);
-	int GetMaximaleReserveringsTijdInMin();
 	int GetMaximaalAantalReserveringen();
 }

@@ -10,6 +10,7 @@ public class ReserveringVanTweeUur implements ReserveringsStrategy {
 		
 	}
 	
+	// Create reservation of two hours
 	@Override
 	public Reservering MaakReservering(Date beginTijd)
 	{
