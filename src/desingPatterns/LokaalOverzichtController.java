@@ -19,13 +19,17 @@ public class LokaalOverzichtController {
 		this.lokOverzicht.mouseListener(new MouseClickListener());
 	}
 
-	// Test code voor mouse click listener
+	// Mouse listener for table click
 	class MouseClickListener implements MouseListener
 	{
 		@Override
 		public void mousePressed(MouseEvent evt){
+			
+			// Get the clicked lokaalnumber
 			Storage storage = Storage.getInstance();
 			Lokaal lokaal = storage.getLokaalByNr(lokOverzicht.getClicked(evt.getPoint()));
+			
+			// If a lokaal is selected go to the detailed view, if not; show error message
 			if(lokaal != null)
 			{
 				LokaalDetailView lokaalDetailView = new LokaalDetailView(lokaal);

@@ -15,19 +15,19 @@ public class Storage
 	
 	// Singleton Instance
 	private static Storage instance; // = new Storage();
-	// Storage constructor private zodat hij niet geinstantieerd kan worden
+	// Storage constructor private
 	private Storage(){}
 	
 	// HashMaps
 	private HashMap<String, Lokaal> lokalen = new HashMap<String, Lokaal>();
 	private HashMap<String, Gebruiker> gebruikers = new HashMap<String, Gebruiker>();
 	
-	// Voeg gebruiker toe op naam en object
+	// Add gebruiker with name and gebruiker object
 	public void addGebruiker(String gebruikerNaam, Gebruiker gebr)
 	{
 		if(gebruikers.containsKey(gebruikerNaam) == false)
 		{
-			// Maak nieuwe gebruiker aan.
+			// Create new gebruiker.
 			gebruikers.put(gebruikerNaam, gebr);
 		}
 	}
@@ -65,28 +65,28 @@ public class Storage
 		return lokalen.get(nr);
 	}
 	
-	// Vullen van de Storage
+	// Method to fill the storage with gebruikers and lokalen
 	public void fillStorage() 
 	{	
-		// Set Gebruikers in factory
+		// Get gebruikers using factory
 		Gebruiker kevin = gebruikersFactory.getGebruiker("STUDENT");
 		Gebruiker martijn = gebruikersFactory.getGebruiker("STUDENT");
 		Gebruiker wilco = gebruikersFactory.getGebruiker("DOCENT");
 		Gebruiker xing = gebruikersFactory.getGebruiker("ADMINISTRATOR");
 		
-		// TODO setten voor later indien nodig
+		// Set name
 		kevin.SetNaam("Kevin");
 		martijn.SetNaam("Martijn");
 		wilco.SetNaam("Wilco");
 		xing.SetNaam("Xing");
 		
-		// Vullen HashMap
+		// Fill HashMap
 		gebruikers.put("Kevin", kevin);
 		gebruikers.put("Martijn", martijn);
 		gebruikers.put("Wilco", wilco);
 		gebruikers.put("Xing", xing);
 		
-		// Vul de lokalen
+		// Fill lokalen
 		for(int i = 1000; i< 1023; i++)
 		{
 			Lokaal lokaal = new Lokaal();
@@ -107,7 +107,7 @@ public class Storage
 		return gebruiker;
 	}
 	
-	// Singleton instance, get enige beschikbare object
+	// Singleton instance, Get instance
 	public static Storage getInstance() 
 	{
 		if(instance == null)
@@ -117,7 +117,7 @@ public class Storage
 		return instance;
 	}
 	
-	// Maak nieuwe reservering aan
+	// Create new reservation
 	public Reservering MaakReservering(ReserveringsStrategy strategy, Date beginTijd)
 	{
 		return strategy.MaakReservering(beginTijd);

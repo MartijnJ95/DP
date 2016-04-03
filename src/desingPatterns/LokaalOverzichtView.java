@@ -34,10 +34,10 @@ public class LokaalOverzichtView extends JFrame {
 	
 	LokaalOverzichtView()
 	{
-		// Geef beschrijving mee
+		// Add description
 		super("Lokalen overzicht");
 	
-		// Creer nieuwe JFrame en zet de size en onclose
+		// Create new Jframe and set size and onclose method
 		lokOverzichtPanel = new JPanel();
 		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -76,13 +76,13 @@ public class LokaalOverzichtView extends JFrame {
 		lokOverzichtPanel.add(scrollPane, BorderLayout.LINE_START);
 	}
 	
-	// Mouselistener voor tableclick
+	// Mouselistener for tableclick
 	void mouseListener(MouseListener list)
 	{
 		overzichtTabel.addMouseListener(list);
 	}
 	
-	// Actionlistener voor loguit button
+	// Actionlistener for loguit button
 	void addLogoutListener(ActionListener listenForLogOutButton)
 	{
 		uitlogKnop.addActionListener(listenForLogOutButton);
@@ -111,6 +111,7 @@ class CustomTableModel extends AbstractTableModel{
 	private ArrayList<String> al = new ArrayList<String>();
 	private String[] header = {"Lokaal nummer", "Reserveringen"};
 	
+	// Constructor
 	public CustomTableModel(ArrayList<String> lokList)
 	{
 		al = lokList;
@@ -133,6 +134,7 @@ class CustomTableModel extends AbstractTableModel{
 		case 0:
 			return lok.GetLokaalNummer();
 		case 1:
+			// Show all the reservations made for all the lokalen
 			ArrayList<Reservering> resList = lok.GetReseringen();
 			String output = "";
 			if(resList.size() != 0)

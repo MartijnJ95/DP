@@ -9,13 +9,14 @@ public class LokaalDetailController
 	private LokaalDetailView lokDetView;
 	private Gebruiker huidigeIngelogd;
 	
-	// 
+	// Constructor
 	public LokaalDetailController(LokaalDetailView lokDetView)
 	{
 		this.lokDetView = lokDetView;
 		this.lokDetView.addReserveerListener(new ReserveerListener());
 	}
 	
+	// Create a new reservation
 	private void maakReservering(Date beginTijd)
 	{
 		Storage storage = Storage.getInstance();
@@ -24,9 +25,10 @@ public class LokaalDetailController
 		Lokaal lok = lokDetView.getHuidigLokaal();
 		Boolean canContinue = true;
 		
-		// Check of er niet meer dan 3 reserveringen aanwezig zijn
+		// Check if the max amount of reservations is not exceeded
 		if(gebr.GetMaximaalAantalReserveringen() - 1 > gebr.GetHuidigeReservingen().size())
 		{
+			// Check if there are no reservations with the same hour in the gebruiker
 			for(int i = 0; i < gebr.GetHuidigeReservingen().size(); i++)
 			{
 				Reservering gebrRes = gebr.GetHuidigeReservingen().get(i);
@@ -38,7 +40,7 @@ public class LokaalDetailController
 					}
 				}
 			}
-			
+			// Do the same here but for this lokaal
 			for(int i = 0; i < lok.GetReseringen().size(); i ++)
 			{
 				Reservering lokRes = lok.GetReseringen().get(i);
@@ -51,6 +53,7 @@ public class LokaalDetailController
 				}
 			}
 			
+			// Create a new reservation
 			if(lokDetView.isEenUur() && canContinue)
 			{
 				res = storage.MaakReservering(new ReserveringVanEenUur(), beginTijd);
@@ -67,7 +70,6 @@ public class LokaalDetailController
 			{
 				gebr.AddHuidigeReservering(res);
 				lok.AddReservering(res);
-				System.out.println(lok.GetReseringen());
 			}
 			else
 			{
@@ -79,16 +81,16 @@ public class LokaalDetailController
 			lokDetView.displayErrorMsg("Maximaal aantal reserveringen bereikt");
 		}
 	}
-	
+
+	// The button listener for the view
 	class ReserveerListener implements ActionListener
 	{
-	
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			// TODO Auto-generated method stub
 			Storage storage = Storage.getInstance();
 			try
 			{
+				// Create a new reservation and close the window
 				huidigeIngelogd = storage.GetHuidigeIngelogd();
 				maakReservering(lokDetView.getReservering());
 				lokDetView.dispose();

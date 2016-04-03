@@ -23,6 +23,7 @@ public class LokaalDetailView extends JFrame
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	// Fields
 	private ButtonGroup tijdGroep;
 	private ButtonGroup tijdsDuurGroep;
 	private JButton reserveerButton = new JButton("Reserveer");
@@ -51,15 +52,20 @@ public class LokaalDetailView extends JFrame
 	
 	private Lokaal huidigLokaal;
 	
+	// Constructor
 	LokaalDetailView(Lokaal lokaal)
 	{
 		super("Maak een Reservering");
 		
+		// Set the current lokaal as the give lokaal
 		huidigLokaal = lokaal;
+		
+		// Set the size of the frame
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setSize(550, 350);
 		this.setResizable(false);
 		
+		// Create a new frame
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
 		
@@ -109,12 +115,13 @@ public class LokaalDetailView extends JFrame
 		tijdsDuurGroep.add(reserveringDrieUur);
 	}
 	
+	// Get the current lokaal in which the reservation is made
 	public Lokaal getHuidigLokaal()
 	{
 		return huidigLokaal;
 	}
 	
-	// Get de reservering die gemaakt is
+	// Get the time of the reservation
 	public Date getReservering() throws Exception
 	{
 		if(halfNegen.isSelected())
@@ -162,6 +169,7 @@ public class LokaalDetailView extends JFrame
 			reservering = "16:30";
 		}
 		
+		// Get the time and convert it to the date object
 		Calendar myDate = new GregorianCalendar();
 		Calendar now = Calendar.getInstance();
 		String target = reservering;
@@ -190,27 +198,27 @@ public class LokaalDetailView extends JFrame
 		return reserveringParsed;
 	}
 	
+	// Get which radio button is true
 	public Boolean isEenUur()
 	{
 		return isEenUur;
 	}
-	
 	public Boolean isTweeUur()
 	{
 		return isTweeUur;
 	}
-	
 	public Boolean isDrieUur()
 	{
 		return isDrieUur;
 	}
 	
+	// Reservation button listener
 	public void addReserveerListener(ActionListener listenForReserveerButton)
 	{
 		reserveerButton.addActionListener(listenForReserveerButton);
 	}
 	
-	// Error message bij leeg textveld
+	// Show error message
 	public void displayErrorMsg(String errorMsg)
 	{
 		JOptionPane.showMessageDialog(this, errorMsg);

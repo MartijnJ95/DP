@@ -8,6 +8,7 @@ public class ReserveringVanDrieUur implements ReserveringsStrategy{
 	public ReserveringVanDrieUur() {
 	}
 	
+	// Create a new reservation of three hours
 	public Reservering MaakReservering(Date beginTijd)
 	{
 		Reservering res = new Reservering();
